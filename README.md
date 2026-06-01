@@ -36,8 +36,7 @@ This repository contains a comprehensive set of ModSecurity rules specifically t
   - Prevents false positive blocking of legitimate users
   - Sets `VerifiedHuman` cookie upon completion
 
-- **Internal Network Trust**: Whitelists WHOI internal IP ranges
-  - 128.128.0.0/16
+- **Internal Network Trust**: Whitelists internal IP ranges
   - 10.0.0.0/8
 
 - **Google Bot Allowance**: Permits Googlebot and Google Inspection Tools
@@ -71,7 +70,7 @@ This repository contains a comprehensive set of ModSecurity rules specifically t
 
 4. **Deploy the CAPTCHA library**:
    - Follow installation instructions at [@kbatyuk/captcha](https://github.com/kbatyuk/captcha)
-   - Ensure it's accessible at `https://dataverse.whoi.edu/captcha.php`
+   - Ensure it's accessible at `https://your.dataverse.edu/captcha.php`
    - The library handles token generation and validation
 
 5. **Restart Apache** to apply the rules:
@@ -90,7 +89,7 @@ This repository contains a comprehensive set of ModSecurity rules specifically t
 
 ### Customize Trusted Ranges
 
-Edit the WHOI ranges in rule 1000:
+Edit the IP ranges in rule 1000:
 ```
 SecRule REMOTE_ADDR "@ipMatch YOUR.IP.RANGE/16,10.0.0.0/8," \
     "id:1000,phase:1,nolog,allow,msg:'Internal Trusted Ranges'"
@@ -132,7 +131,7 @@ SecRule QUERY_STRING "@gt 1000" \  # Change 1000 to your threshold
 
 Replace all instances of:
 ```
-https://dataverse.whoi.edu/captcha.php?orig_uri=%{REQUEST_URI}
+https://your.dataverse.edu/captcha.php?orig_uri=%{REQUEST_URI}
 ```
 with your actual CAPTCHA endpoint and Dataverse domain.
 
@@ -142,7 +141,7 @@ with your actual CAPTCHA endpoint and Dataverse domain.
 
 | ID | Purpose | Action |
 |---|---|---|
-| 1000 | Trust WHOI internal IP ranges | Allow |
+| 1000 | Trust internal IP ranges | Allow |
 | 1005 | Allow verified humans (cookie-based) | Allow |
 | 1006 | Allow captcha.php requests | Allow |
 | 1007 | Whitelist Google inspection tools | Allow |
