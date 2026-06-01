@@ -266,7 +266,7 @@ Refer to the [@kbatyuk/captcha README](https://github.com/kbatyuk/captcha#readme
 ## Security Considerations
 
 1. **HTTPS Only**: Ensure all redirect URLs use HTTPS to prevent cookie theft
-2. **Domain Validation**: Update all hardcoded `dataverse.whoi.edu` references to your actual domain
+2. **Domain Validation**: Update all hardcoded `your.dataverse.edu` references to your actual domain
 3. **Regular Updates**: Keep bot lists current as new threats emerge
 4. **IP Whitelisting**: Consider adding additional trusted IP ranges for your organization
 5. **Monitoring**: Set up alerts for unusual block patterns
